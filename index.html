@@ -7,7 +7,7 @@
 		body {
 			margin:0;
 			padding:0;
-			text-align: center;;
+			text-align: center;
 		}
 		#main {
 			width:800px;
@@ -20,15 +20,18 @@
 			cursor:url(1.jpg), pointer;
 		}
 		input {
-			margin-left: 30px;
+			margin-left: 15px;
+			color:white;
 		}
 		#green{background-color: green;}
 		#red{background-color: red;}
 		#blue{background-color: blue;}
 		#gray{background-color: gray;}
+		#black{background-color: black;}
 		#image {
 			border:1px dashed gray;
 		}
+		#bu {color:black; background-color: #eee;}
 	</style>
 
 </head>
@@ -40,11 +43,13 @@
 		<input type="button" id="red" value="红色">
 		<input type="button" id="blue" value="蓝色">
 		<input type="button" id="gray" value="灰色">
+		<input type="button" id="black" value="黑色">
 		线条大小选择器：
 		<select name="size" id="size">
 			<option value="2">2</option>
 			<option value="4">4</option>
 			<option value="8">8</option>
+			<option value="12">12</option>
 			<option value="16">16</option>
 		</select>
 		<input type="button" id="bu" value="生成图片">
@@ -74,6 +79,7 @@
 	var red = document.getElementById('red');
 	var blue = document.getElementById('blue');
 	var gray = document.getElementById('gray');
+	var black = document.getElementById('black');
 	var linecolor = 'white';
 	green.addEventListener('mousedown',function(){
 		linecolor = 'green';
@@ -87,14 +93,15 @@
 	gray.addEventListener('mousedown',function(){
 		linecolor = 'gray';
 	},false);
-
+	black.addEventListener('mousedown',function(){
+		linecolor = 'black';
+	},false);
 	//鼠标点击下去
 	canvas.addEventListener('mousedown',down,false);
 	//鼠标移动
 	canvas.addEventListener('mousemove',draw,false);
 	//鼠标弹起取消画图
 	canvas.addEventListener('mouseup',up,false);
-
 	function down(event){
 		onoff = true;
 		oldx = event.clientX-canvas.offsetLeft;
@@ -119,7 +126,6 @@
 			oldy = newy;
 		};
 	}
-
 	function toImg(){
 		document.getElementById('image').src = canvas.toDataURL("image/png"); 
 	}
